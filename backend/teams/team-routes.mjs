@@ -8,6 +8,7 @@ const router = Router();
 router.get('', teams.teams_get_all);
 router.post('', teams.teams_create);
 router.get('/:id', teams.teams_get_by_id);
+router.put('/:id', teams.teams_put_by_id);
 router.delete('/:id', teams.teams_delete_by_id);
 
 

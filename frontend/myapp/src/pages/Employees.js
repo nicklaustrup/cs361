@@ -52,7 +52,7 @@ function Employees({ setEmployee }) {
 
 
   return (
-    <div className='flex flex-col pt-5 items-center mx-auto w-1/2 h-[60vh]'>
+    <div className='flex flex-col pt-5 items-center mx-auto w-1/2 min-h-fit'>
         <h2 className='text-4xl font-bold text-slate-500 py-4 mx-auto w-fit'>Employees</h2>
 
         <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-xl font-medium border border-slate-200 shadow-sm'>

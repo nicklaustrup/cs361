@@ -17,12 +17,12 @@ function EmployeeTable({ employees, confirmDelete, onEdit }) {
   
 
   return (
-    <div className='w-full'>
+    <div className='w-full min-h-fit'>
           <button className='border border-gray-300 shadow-sm rounded-md px-2 py-1 bg-blue-200 self-start' onClick={addNewEmployee}>Add New Employee</button>
 
-          <ul role="list" className="divide-y divide-gray-100">
+          <ul role="list" className="divide-y divide-gray-100 py-5">
             {employees.map((person) => (
-              <li key={person.email} className="flex justify-between gap-x-6 py-5">
+              <li key={person._id} className="flex justify-between gap-x-6 py-5">
                 <div className="flex min-w-fit gap-x-4 truncate text-ellipsis">
                   <img alt='' src={default_image} className="h-12 w-12 flex-none rounded-full bg-gray-50" />
                   <div className="min-w-0 flex-auto">

@@ -29,15 +29,8 @@ function Login() {
     <button className='bg-slate-500 text-white w-[200px] rounded-md font-medium my-6 mx-1 py-1' >Login</button>
     <button onClick={routeChange} className='bg-slate-200 text-black w-[200px] rounded-md font-medium my-6 mx-1 py-1' >Register</button>
         <div className='flex justify-center'>
-        <GoogleLogin
-        onSuccess={credentialResponse => {
-            const credentialResponseDecoded = jwtDecode(credentialResponse.credential)
-            console.log(credentialResponseDecoded);
-        }}
-        onError={() => {
-            console.log('Login Failed');
-        }}
-        />;
+
+        <p className='w-1/5 border border-slate-200 bg-gray-300 rounded-lg p-2 m-3'>Sign up, it only takes a minute!</p>
         </div>
     </form>
     </div>
