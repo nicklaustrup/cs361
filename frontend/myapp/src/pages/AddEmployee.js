@@ -31,11 +31,10 @@ const AddEmployee = () => {
         navigate("/employees");
     };
 
-
     return (
-        <div className='flex flex-col justify-center mx-auto w-1/2'>
+        <div className='flex flex-col items-center mx-auto w-1/2'>
             <h1 className='text-4xl font-bold text-slate-500 py-4 mx-auto'>Add New Employee</h1>
-            <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>Add a new employee by filling in the form below. All fields are required except the Teams field which can be filled in from the "Teams" page. When you're finished, click the "Submit" button or click "Cancel" to return to the Employees page.</p>
+            <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-xl font-medium border border-slate-200 shadow-sm'>Add a new employee by filling in the form below. All fields are required except the Teams field which can be filled in from the "Teams" page. When you're finished, click the "Submit" button or click "Cancel" to return to the Employees page.</p>
 
             <div className='w-full flex flex-col gap-5'>
                 <label for="firstName">First Name
@@ -55,7 +54,7 @@ const AddEmployee = () => {
                 </label>
                 <div className='flex'>
                     <button className='m-2 p-2 rounded-md shadow-lg bg-blue-300 w-2/4' onClick={addEmployee}>Submit</button>
-                    <button className='m-2 p-2 rounded-md shadow-lg bg-gray-400 w-2/4' onClick={addEmployee}>Cancel</button>
+                    <button className='m-2 p-2 rounded-md shadow-lg bg-gray-400 w-2/4' onClick={() => navigate("/employees")}>Cancel</button>
                 </div>
             </div>
         </div>

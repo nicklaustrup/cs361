@@ -45,10 +45,10 @@ const AddTeam = () => {
 
 
     return (
-        <div className='flex flex-col justify-center mx-auto w-1/2'>
+        <div className='flex flex-col items-center mx-auto w-1/2'>
             <h1 className='text-4xl font-bold text-slate-500 py-4 mx-auto'>Add New Team</h1>
 
-            <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>Create a new team assign a member. Member list is generated from all employees who have been added to the database. When finished, click the "Submit" button or "Cancel" to return to the previous page.</p>
+            <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-xl font-medium border border-slate-200 shadow-sm'>Create a new team assign a member. Member list is generated from all employees who have been added to the database. When finished, click the "Submit" button or "Cancel" to return to the previous page.</p>
 
             <div className='w-full flex flex-col gap-5'>
 

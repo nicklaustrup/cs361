@@ -29,7 +29,7 @@ const TeamsTable = ({ teams, confirmDelete, onEdit }) => {
 
     
   return (
-    <>
+    <div className='w-full'>
     <button className='border border-gray-300 shadow-sm rounded-md px-2 py-1 bg-blue-200' onClick={addNewTeam}>Add New Team</button>
 
     <ul role="list" className="divide-y divide-gray-100">
@@ -63,7 +63,7 @@ const TeamsTable = ({ teams, confirmDelete, onEdit }) => {
         </li>
       ))}
     </ul>
-</>
+</div>
   )
 }
 

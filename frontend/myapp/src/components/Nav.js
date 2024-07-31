@@ -10,8 +10,8 @@ function Nav() {
   return (
     <>
         <ul className='flex'>
-          <li className='p-4'> <NavLink to="/" activeClassName="navbar__link--active" className="navbar__link">Home</NavLink></li>
-          <li className='p-4'> <NavLink to="/employees" activeClassName="navbar__link--active" className="navbar__link">Employees</NavLink> </li>
+          <li className='p-4'> <NavLink to="/home" className="navbar__link">Home</NavLink></li>
+          <li className='p-4'> <NavLink to="/employees"  className="navbar__link">Employees</NavLink> </li>
           <li className='p-4'> <NavLink to="/teams" className={({ isActive }) => (isActive ? 'active' : 'inactive')}>Teams</NavLink> </li>
         {/* <NavLink to="/artlog">Art</NavLink>
         <NavLink to="../projects">Gallery</NavLink>

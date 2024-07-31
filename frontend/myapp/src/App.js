@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react'
 
 
-import HomePage from './pages/HomePage.js';
+import LoginPage from './pages/LoginPage.js';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Register from './pages/Register.js';
@@ -12,6 +12,7 @@ import AddEmployee from './pages/AddEmployee.js';
 import Teams from './pages/Teams.js';
 import AddTeam from './pages/AddTeam.js';
 import EditTeam from './pages/EditTeam.js';
+import HomePage from './pages/HomePage.js';
 
 // Import pages here
 
@@ -30,7 +31,8 @@ function App() {
       <main>
         <section>
           <Routes>
-            <Route path="/" exact element={<HomePage />} /> 
+            <Route path="/" exact element={<LoginPage />} /> 
+            <Route path="/home" exact element={<HomePage />} /> 
             <Route path="/register" exact element={<Register />} />
             <Route path="/employees" exact element={<Employees setEmployee={setEmployee}/>} />
             <Route path="/edit-employee" exact element={<EditEmployee employee={employee} />} /> 

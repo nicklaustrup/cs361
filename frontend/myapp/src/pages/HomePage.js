@@ -1,27 +1,14 @@
-import React from 'react';
-import { ReactTyped } from 'react-typed';
-import Login from '../components/Login';
+import React from 'react'
 
-function HomePage() {
+const HomePage = () => {
     return (
-        <div className='min-h-fit'>
-        <div className='max-w-[800px] mt-[5%] w-full pb-10 mx-auto text-center flex flex-col justify-center'>
-            <h1 className='text-3xl font-bold text-slate-500'>Same Page App</h1>
-            
-            <div className='text-4xl font-bold p-2 flex justify-center items-center'>
-
-                <p className='text-4xl'>Keep your team</p>
-                <ReactTyped className='pl-2 font-bold text-4xl text-slate-500' strings={['synced.', 'connected.', 'alert.', 'on the Same Page.']} typeSpeed={100} backSpeed={80} loop />
-
-            </div> 
-
-            <p className='font-bold text-gray-500'>Manage your team's communications all in one place.</p>
-            <p className='font-bold text-gray-500'>Disseminate critical alerts from your dashboard.</p>
-            <Login />
-            </div>
+        <div className='flex flex-col pt-5 items-center mx-auto w-1/2 h-[60vh]'>
+            <h1 className='text-4xl font-bold text-slate-500 py-4 mx-auto'>Home</h1>
+            <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-xl font-medium border border-slate-200 shadow-sm'>SamePage is a one-stop shop for centralizing your team's communication and disseminating important messages.</p>
+            <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-lg border border-slate-200 shadow-sm'>To get started, add your Employees to our database by selecting "Employees" from the navigation bar. From the Employees page, you can view, add, delete, or edit any employee who is currently in the database.</p>
+            <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-lg border border-slate-200 shadow-sm'>You can create Teams with any of the employees in the database. From the Teams page, you can create, update, view, or remove teams from the database. Select "Teams" from the navigation bar to get started.</p>
         </div>
-    );
+    )
 }
 
 export default HomePage;
-  

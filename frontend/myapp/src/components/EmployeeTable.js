@@ -17,13 +17,13 @@ function EmployeeTable({ employees, confirmDelete, onEdit }) {
   
 
   return (
-    <>
-          <button className='border border-gray-300 shadow-sm rounded-md px-2 py-1 bg-blue-200' onClick={addNewEmployee}>Add New Employee</button>
+    <div className='w-full'>
+          <button className='border border-gray-300 shadow-sm rounded-md px-2 py-1 bg-blue-200 self-start' onClick={addNewEmployee}>Add New Employee</button>
 
           <ul role="list" className="divide-y divide-gray-100">
             {employees.map((person) => (
               <li key={person.email} className="flex justify-between gap-x-6 py-5">
-                <div className="flex min-w-fit gap-x-4">
+                <div className="flex min-w-fit gap-x-4 truncate text-ellipsis">
                   <img alt='' src={default_image} className="h-12 w-12 flex-none rounded-full bg-gray-50" />
                   <div className="min-w-0 flex-auto">
                     <p className="text-md font-semibold leading-6 text-gray-900">{person.firstName} {person.lastName}</p>
@@ -31,7 +31,7 @@ function EmployeeTable({ employees, confirmDelete, onEdit }) {
                   <p className="text-sm leading-6 text-gray-700 font-semibold self-center">{person.team ? person.team : "Unassigned"}</p>
                   </div>
                 </div>
-                <div className='w-full pl-5 flex'>
+                <div className='w-full pl-1 flex'>
                 <h3 className='text-gray-500 text-md self-center mx-3'>Contact</h3>
                 <div className='inline-block m-3'>
                 <p className="mt-1  text-md leading-5 text-gray-500">{person.email}</p>
@@ -48,7 +48,7 @@ function EmployeeTable({ employees, confirmDelete, onEdit }) {
               </li>
             ))}
           </ul>
-</>
+</div>
   )
 }
 

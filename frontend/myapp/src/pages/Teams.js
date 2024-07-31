@@ -52,12 +52,10 @@ const Teams = ({ setTeam, setEmployees }) => {
 
 
   return (
-    <div className='flex flex-col justify-center mx-auto w-1/2'>
-    <h2 className='text-4xl font-bold text-slate-500 py-4 mx-auto'>Teams</h2>
-
-    <section className='h-[1%]'>
-        <article className='mx-auto mt-5'>
-        <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>View, edit, and delete all teams currently in the database. Add a new team by clicking on the "Add New Team" button.</p>
+    <div className='flex flex-col pt-5 items-center mx-auto w-1/2 h-[60vh]'>
+    <h2 className='text-4xl font-bold text-slate-500 py-4 mx-auto w-fit'>Teams</h2>
+        <p className='w-3/4 my-5 p-2 bg-slate-100 rounded-lg text-xl font-medium border border-slate-200 shadow-sm'>
+        View, edit, and delete all teams currently in the database. Add a new team by clicking on the "Add New Team" button.</p>
 
           <TeamsTable 
             teams={teams}
@@ -65,8 +63,6 @@ const Teams = ({ setTeam, setEmployees }) => {
             onEdit={onEditTeam}
             />
         {open && <Confirmation onConfirm={onDeleteTeam} open={open} setOpen={setOpen}/>}
-        </article>
-    </section>
 </div>
   )
 }
