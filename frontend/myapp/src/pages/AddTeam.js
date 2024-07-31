@@ -48,7 +48,10 @@ const AddTeam = () => {
         <div className='flex flex-col justify-center mx-auto w-1/2'>
             <h1 className='text-4xl font-bold text-slate-500 py-4 mx-auto'>Add New Team</h1>
 
+            <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>Create a new team assign a member. Member list is generated from all employees who have been added to the database. When finished, click the "Submit" button or "Cancel" to return to the previous page.</p>
+
             <div className='w-full flex flex-col gap-5'>
+
                 <label for="teamName">Name
                     <input id="teamName" className="bg-gray-100 p-2 rounded-lg shadow-sm w-full" type="text" placeholder='Team Name' name="name" value={name} onChange={e => setName(e.target.value)} required />
                 </label>

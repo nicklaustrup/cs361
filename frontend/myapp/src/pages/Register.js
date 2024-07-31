@@ -30,7 +30,7 @@ const Register = () => {
         </form>
         <div className='mt-5'>
         <p>Already registered?</p>
-        <Link className="text-blue-400 underline" to="#">Sign In</Link>
+        <Link className="text-blue-400 underline" to="/">Sign In</Link>
         </div>
         </div>
     </div>

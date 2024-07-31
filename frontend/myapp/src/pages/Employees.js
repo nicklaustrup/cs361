@@ -60,6 +60,8 @@ function Employees({ setEmployee }) {
 
         <section className='h-[1%]'>
             <article className='mx-auto mt-5'>
+            <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>View, edit, and delete all employees currently in the database. Add a new employee by clicking on the "Add New Employee" button.</p>
+
               <EmployeeTable 
                 employees={employees}
                 confirmDelete={confirmDelete}

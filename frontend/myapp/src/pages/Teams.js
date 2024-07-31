@@ -4,7 +4,7 @@ import Confirmation from '../components/Confirmation';
 import TeamsTable from '../components/TeamsTable';
 
 
-const Teams = ({ setTeam }) => {
+const Teams = ({ setTeam, setEmployees }) => {
 
       // use state to bring in the data
       const [teams, setTeams] = useState([]);
@@ -19,6 +19,7 @@ const Teams = ({ setTeam }) => {
       const response = await fetch(`/teams`);
       const teams = await response.json();
       setTeams(teams);
+      setEmployees();
   }  
 
       // DELETE a single team
@@ -56,6 +57,8 @@ const Teams = ({ setTeam }) => {
 
     <section className='h-[1%]'>
         <article className='mx-auto mt-5'>
+        <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>View, edit, and delete all teams currently in the database. Add a new team by clicking on the "Add New Team" button.</p>
+
           <TeamsTable 
             teams={teams}
             confirmDelete={confirmDelete}

@@ -18,6 +18,7 @@ import EditTeam from './pages/EditTeam.js';
 function App() {
   const [employee, setEmployee] = useState([]);
   const [team, setTeam] = useState([]);
+  const [employees, setEmployees] = useState([]);
 
   return (
     <div className="App min-h-fit">
@@ -34,9 +35,9 @@ function App() {
             <Route path="/employees" exact element={<Employees setEmployee={setEmployee}/>} />
             <Route path="/edit-employee" exact element={<EditEmployee employee={employee} />} /> 
             <Route path='/add-employee' exact element={<AddEmployee />} />
-            <Route path='/teams' exact element={<Teams setTeam={setTeam} />} />
+            <Route path='/teams' exact element={<Teams setEmployees={setEmployees} setTeam={setTeam} />} />
             <Route path='/add-team' exact element={<AddTeam />} />
-            <Route path='/edit-team' exact element={<EditTeam team={team} />} />
+            <Route path='/edit-team' exact element={<EditTeam employees={employees} team={team} />} />
 
           </Routes>
         </section>

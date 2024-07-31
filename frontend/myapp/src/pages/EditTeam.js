@@ -1,15 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+
 function EditTeam({ team }) {
+
+    // RETRIEVE the list of employees
+    const loadEmployees = async () => {
+        const response = await fetch(`/employees`);
+        const employees = await response.json();
+        setEmployees(employees);
+    }
+
+    useEffect(() => {
+        loadEmployees();
+    }, []);
+
+
     const [name, setName] = useState(team.name);
     const [newMembers, setNewMembers] = useState(team.members);
+    const [employees, setEmployees] = useState([]);
+
 
     const navigate = useNavigate();
 
     const editTeam = async () => {
-        // const updateEmployee = { firstName, lastName, phone, email, team };
-
         const response = await fetch(`/teams/${team._id}`, {
             method: 'put',
             body: JSON.stringify({
@@ -19,9 +33,7 @@ function EditTeam({ team }) {
             headers: {
                 'Content-Type': 'application/json',
             },
-
         });
-
         if (response.status === 200) {
             alert(`You successfully edited ${name}.`);
         } else {
@@ -36,13 +48,47 @@ function EditTeam({ team }) {
     }
 
     const newTeamSlot = () => {
-        const myElement = document.getElementById("newTeamSlot");
-        myElement.innerHTML = `
-        <p>New Members</p>
-        <select>
-            <option> Hi </option>
-        </select>
-        `
+        // Extract the IDs from the members array
+        const memberIds = newMembers.map(member => member._id);
+        let availableList = employees.filter(emp => !memberIds.includes(emp._id));
+        let myElement = document.getElementById("newTeamSlot");
+        myElement.style.display = 'flex';
+        let newSelect = document.createElement('select');
+        let container = document.createElement('div');
+        container.className = 'w-full flex-row gap-3';
+        let btn = document.createElement('button');
+        btn.className = 'w-fit bg-slate-400 text-white p-2 rounded-lg m-auto';
+        btn.textContent = 'Remove';
+        newSelect.className = 'border border-gray-100 gap-2 p-2 bg-slate-100 rounded-lg w-3/4';
+        newSelect.onchange = function (e) {
+            onNewEmployee(e.target.value);
+        };
+        myElement.appendChild(container);
+        container.appendChild(newSelect);
+        container.appendChild(btn);
+
+        availableList.forEach((item) => {
+            let newOption = document.createElement('option');
+            newOption.value = item._id;
+            let name = [item.firstName, item.lastName]
+            newOption.text = name.join(' ');
+            newSelect.appendChild(newOption);
+        })
+
+
+    }
+
+    // const generateTeamDropDown = () =>{
+    //     {team.members.map((member) => 
+    //         <p className='p-2 bg-gray-100 rounded-md border border-slate-300' value={member._id} onChange={e => setNewMembers(e.target.value)}> {member.firstName} {member.lastName} </p>
+    //     )}
+    // };
+
+
+    const onNewEmployee = (newID) => {
+        const newArray = newMembers.slice();
+        newArray.push(newID);
+        setNewMembers({ arr: newArray });
     }
 
 
@@ -52,18 +98,21 @@ function EditTeam({ team }) {
 
             <section className='h-[1%]'>
                 <article className='mx-auto mt-5'>
-                    <div className='w-full flex flex-col gap-5'>
+                    <p className='w-full my-5 p-2 bg-slate-100 rounded-lg'>Edit your team name and add new members. Adding members will pull a list of employees from the database who are not currently assigned to this team.</p>
+                    <div className='w-full flex flex-col gap-5 border border-gray-100 p-2 rounded-lg'>
                         <label htmlFor="name">Team
-                            <input id="name" className="bg-gray-100 p-2 rounded-lg shadow-sm w-full" type="text" placeholder='First Name' name="firstName" value={team.name} onChange={e => setName(e.target.value)} required />
+                            <input id="name" className="bg-gray-100 p-2 rounded-lg shadow-sm w-full border border-slate-300" type="text" placeholder='First Name' name="firstName" value={team.name} onChange={e => setName(e.target.value)} required />
                         </label>
                         <label htmlFor="editMembers" className=''>Members</label>
                         <button className='bg-blue-200 w-fit p-2 rounded-lg shadow-md self-start' onClick={newTeamSlot}>Add New Members</button>
-                        <div >
-                        {team.members.map((member) => 
-                            <p className='p-2 bg-gray-100 rounded-md border border-slate-300' value={member._id} onChange={e => setNewMembers(e.target.value)}> {member.firstName} {member.lastName} </p>
+
+                        {team.members.map((member) =>
+                            <p className='p-2 bg-gray-100 rounded-md border border-slate-300' value={member._id}> {member.firstName} {member.lastName} </p>
                         )}
-                        <p id="newTeamSlot"></p>
+                        <div>
+                            <p className="w-full flex-col gap-2" style={{ display: "none" }} id="newTeamSlot">Add New Members</p>
                         </div>
+
                     </div>
                     <div className='flex mt-10'>
                         <button className='m-2 p-2 rounded-md shadow-lg bg-blue-300 w-2/4' onClick={editTeam}>Submit</button>
