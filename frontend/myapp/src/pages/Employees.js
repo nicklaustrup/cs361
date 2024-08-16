@@ -15,7 +15,7 @@ function Employees({ setEmployee }) {
 
   // RETRIEVE the list of employees
   const loadEmployees = async () => {
-    const response = await fetch('/employees');
+    const response = await fetch('http://localhost:3006/employees');
     const employees = await response.json();
     setEmployees(employees);
   }
@@ -24,9 +24,9 @@ function Employees({ setEmployee }) {
   // exploration-implementing-a-full-stack-mern-app-part-2?module_item_id=21138419
   const onDeleteEmployee = async () => {
     setOpen(false);
-    const response = await fetch(`/employees/${deleteEmp._id}`, { method: 'DELETE' });
+    const response = await fetch(`http://localhost:3006/employees/${deleteEmp._id}`, { method: 'DELETE' });
     if (response.status === 200) {
-      const getResponse = await fetch('/employees');
+      const getResponse = await fetch('http://localhost:3006/employees');
       const getEmployees = await getResponse.json();
       setEmployees(getEmployees);
     } else {

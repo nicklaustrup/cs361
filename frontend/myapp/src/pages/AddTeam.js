@@ -13,7 +13,7 @@ const AddTeam = () => {
     const addTeam = async () => {
         const newTeam = { name, members };
     try {
-        const response = await fetch(`/teams`, {
+        const response = await fetch(`http://localhost:3005/teams`, {
             method: 'POST',
             body: JSON.stringify(newTeam),
             headers: {
@@ -34,7 +34,7 @@ const AddTeam = () => {
 
     // RETRIEVE the list of employees
     const loadEmployees = async () => {
-        const response = await fetch(`/employees`);
+        const response = await fetch(`http://localhost:3006/employees`);
         const employees = await response.json();
         setEmployees(employees);
     }

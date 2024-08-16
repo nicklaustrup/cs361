@@ -1,0 +1,14 @@
+{
+    "emails": ["email1@example.com", "email2@example.com"],
+    "subject": "Test Subject",
+    "message": "This is a test message",
+    "transporter": {
+        "host": "smtp.ethereal.email",
+        "port": 587,
+        "secure": false,
+        "auth": {
+            "user": "vxxbtduquob46pvg@ethereal.email",
+            "pass": "DDCCZf7yfXDCw2bsNV"
+        }
+    }
+}

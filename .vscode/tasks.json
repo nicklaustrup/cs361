@@ -1,0 +1,104 @@
+// This configuration will open two terminals, one for the frontend and one for the backend, and run npm start in each1.
+
+// modify the cwd and command fields accordingly
+
+// Press F1 to open the command palette.
+// Type Run Task and select it.
+// Choose Start Both from the list.
+
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Frontend",
+      "type": "shell",
+      "command": "npm start",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend/myapp/"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "group": "groupA"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Employees",
+      "type": "shell",
+      "command": "npm start",
+      "options": {
+        "cwd": "${workspaceFolder}/employees_backend"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "group": "groupA"
+      },
+      "problemMatcher": []
+    },
+    {
+        "label": "Start Login",
+        "type": "shell",
+        "command": "npm start",
+        "options": {
+          "cwd": "${workspaceFolder}/login"
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new",
+          "group": "groupA"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Start Nodemailer",
+        "type": "shell",
+        "command": "npm start",
+        "options": {
+          "cwd": "${workspaceFolder}/nodemailer_backend"
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new",
+          "group": "groupA"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Start Teams",
+        "type": "shell",
+        "command": "npm start",
+        "options": {
+          "cwd": "${workspaceFolder}/teams_backend"
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "new",
+          "group": "groupA"
+        },
+        "problemMatcher": []
+      },
+    {
+      "label": "Start All",
+      "dependsOn": ["Start Frontend", "Start Employees", "Start Login", "Start Nodemailer", "Start Teams"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
+
+// 

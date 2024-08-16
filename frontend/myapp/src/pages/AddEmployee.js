@@ -15,7 +15,7 @@ const AddEmployee = () => {
     const addEmployee = async () => {
         const newEmployee = { firstName, lastName, phone, email, team };
 
-        const response = await fetch('/employees', {
+        const response = await fetch('http://localhost:3006/employees', {
             method: 'POST',
             body: JSON.stringify(newEmployee),
             headers: {

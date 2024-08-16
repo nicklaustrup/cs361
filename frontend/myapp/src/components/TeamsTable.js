@@ -4,7 +4,28 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import default_group from "../images/default_group.png"
 
+async function alertTeam(emails) {
+  console.log("memberEmails: ", emails);
 
+//   {
+//     "emails": ["email1@example.com", "email2@example.com"],
+//     "subject": "Test Subject",
+//     "message": "This is a test message",
+// }
+
+  return fetch('http://localhost:3008/send-emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      emails,
+      subject: 'This is a test',
+      message: 'Testing the email service'
+    })
+  })
+    .then(data => data.json())
+}
 
 
 const TeamsTable = ({ teams, confirmDelete, onEdit }) => {
@@ -16,17 +37,15 @@ const TeamsTable = ({ teams, confirmDelete, onEdit }) => {
     navigate('/add-team');
   };
 
-  //   // RETRIEVE the list of employees
-  //   const loadEmployees = async () => {
-  //     const response = await fetch(`${employeesAPI}`);
-  //     const employees = await response.json();
-  //     setEmployees(employees);
-  // }
 
-  //   useEffect(() => {
-  //       loadEmployees();
-  //   }, []);
+  const handleAlert = (teamId) => {
+    const callTeam = teams.find((team) => team._id === teamId);
+    if (callTeam.members) {
+      const memberEmails = callTeam.members.map(member => member.email)
+      alertTeam(memberEmails);
+    }
 
+  };
 
   return (
     <div className='w-full min-h-fit'>
@@ -52,6 +71,7 @@ const TeamsTable = ({ teams, confirmDelete, onEdit }) => {
                 )}
 
               </div>
+              <input type='button' value="Alert Team" className='bg-slate-500 text-white font-semibold px-2 rounded-lg mx-auto cursor-pointer hover:bg-slate-600' onClick={() => handleAlert(team._id)} />
             </div>
             <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
               <div className="mt-1 flex items-center gap-x-1.5">

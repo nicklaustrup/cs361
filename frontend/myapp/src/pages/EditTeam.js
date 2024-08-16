@@ -6,7 +6,7 @@ function EditTeam({ team }) {
 
     // RETRIEVE the list of employees
     const loadEmployees = async () => {
-        const response = await fetch(`/employees`);
+        const response = await fetch(`http://localhost:3006/employees`);
         const employees = await response.json();
         setEmployees(employees);
     }
@@ -18,7 +18,6 @@ function EditTeam({ team }) {
 
     const [name, setName] = useState(team.name);
     const [newMembers, setNewMembers] = useState(team.members);
-    console.log("newMembers: ", newMembers);
     const [employees, setEmployees] = useState([]);
 
 
@@ -26,8 +25,7 @@ function EditTeam({ team }) {
 
     const editTeam = async (e) => {
         e.preventDefault();
-        console.log("EditTeams newMembers: ", newMembers);
-        const response = await fetch(`/teams/${team._id}`, {
+        const response = await fetch(`http://localhost:3005/teams/${team._id}`, {
             method: 'put',
             body: JSON.stringify({
                 name: name,
@@ -56,19 +54,31 @@ function EditTeam({ team }) {
         if (hideInstructions){
             hideInstructions.style = 'display: none';
         };
-        let myElement = document.getElementById("newTeamSlot");
-        myElement.style.display = 'flex';
-        let newSelect = document.createElement('select');
+
+        // MEMBER SLOT
+        let p_element = document.getElementById("newTeamSlot");
+        p_element.style.display = 'flex';
+
+        // CONTAINER
         let container = document.createElement('div');
-        container.className = 'w-full flex flex-row gap-3';
-        let btn = document.createElement('button');
-        btn.className = 'w-max-2/4 bg-slate-400 text-white p-2 rounded-lg mx-auto';
-        btn.textContent = 'Remove';
-        newSelect.className = 'border border-gray-100 gap-2 p-2 bg-slate-100 rounded-lg w-3/4';
+        container.className = 'flex flex-row';
+
+        // REMOVE BUTTON
+        let btn = document.createElement('input');
+        btn.type = 'button';
+        btn.className = 'w-max-2/4 bg-slate-400 text-white p-2 rounded-lg mx-3';
+        btn.value = 'Remove';
+
+
+        // SELECT OPTIONS
+        let newSelect = document.createElement('select');
+        newSelect.className = 'border border-gray-100 gap-2 p-2 bg-slate-100 rounded-lg w-full';
         newSelect.onchange = function (e) {
             onNewEmployee(e.target.value);
         };
-        myElement.appendChild(container);
+
+        // ADD CHILDREN TO p_element
+        p_element.appendChild(container);
         container.appendChild(newSelect);
         container.appendChild(btn);
 
@@ -78,12 +88,14 @@ function EditTeam({ team }) {
             let name = [item.firstName, item.lastName]
             newOption.text = name.join(' ');
             newSelect.appendChild(newOption);
-            console.log("NewTeamSlot Option: ", newOption)
         })
-
-
     }
 
+    const removeFromTeam = (memberid) => {
+        const remove_p = document.getElementById(memberid);
+        remove_p.style.display = 'none';
+        
+    }
 
 
     const onNewEmployee = (_id) => {
@@ -104,7 +116,10 @@ function EditTeam({ team }) {
                 <input type="button" className='bg-blue-200 w-fit p-2 rounded-lg shadow-md self-start' onClick={newTeamSlot} value="Add New Employees" />
 
                 {team.members ? (team.members.map((member) =>
-                    <p key={member._id} className='p-2 bg-gray-100 rounded-md border border-slate-300' value={member._id}> {member.firstName} {member.lastName} </p>
+                <div id={member._id} className='flex flex-row'>
+                    <p key={member._id}  className='p-2 bg-gray-100 rounded-md border border-slate-300 w-full' value={member._id}> {member.firstName} {member.lastName}</p>
+                    <input type='button' onClick={() => removeFromTeam(member._id)} className='w-max-2/4 bg-slate-400 text-white p-2 rounded-lg mx-3' value='Remove' />
+                </div>
                 )) : (<p id="no-team-instr" >Click "Add New Members" button to get started</p>)}
                 <div>
                     <p className="w-full flex-col gap-2" style={{ display: "none" }} id="newTeamSlot">Add New Members</p>

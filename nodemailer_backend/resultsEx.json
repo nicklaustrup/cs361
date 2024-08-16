@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "email": "nick@nick.com",
+      "status": "sent"
+    },
+    {
+      "email": "blue@manchoo.com",
+      "status": "sent"
+    }
+  ]
+}
